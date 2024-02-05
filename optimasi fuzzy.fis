@@ -1,0 +1,87 @@
+[System]
+Name='optimasi fuzzy'
+Type='sugeno'
+Version=2.0
+NumInputs=4
+NumOutputs=1
+NumRules=28
+AndMethod='prod'
+OrMethod='probor'
+ImpMethod='prod'
+AggMethod='sum'
+DefuzzMethod='wtaver'
+
+[Input1]
+Name='mpu-x'
+Range=[0 90]
+NumMFs=4
+MF1='low':'trimf',[0 9 18]
+MF2='med':'trimf',[13 20 27]
+MF3='high':'trapmf',[22 29 90 90]
+MF4='hold':'trapmf',[0 0 0 1]
+
+[Input2]
+Name='mpu-y'
+Range=[0 90]
+NumMFs=4
+MF1='low':'trimf',[0 9 18]
+MF2='med':'trimf',[13 20 27]
+MF3='high':'trapmf',[22 29 90 90]
+MF4='hold':'trapmf',[0 0 0 1]
+
+[Input3]
+Name='distance'
+Range=[0 200]
+NumMFs=4
+MF1='highdn':'trapmf',[0 0 70 90]
+MF2='low':'trimf',[70 90 115]
+MF3='mid':'trimf',[90 110 130]
+MF4='highup':'trapmf',[115 130 200 200]
+
+[Input4]
+Name='rH'
+Range=[0 100]
+NumMFs=4
+MF1='dry':'trapmf',[0 0 25 35]
+MF2='normal':'trimf',[15 45 75]
+MF3='wet':'trimf',[45 75 95]
+MF4='vwet':'trapmf',[85 95 100 100]
+
+[Output1]
+Name='status'
+Range=[0 100]
+NumMFs=4
+MF1='normal':'constant',[0]
+MF2='siaga':'constant',[50]
+MF3='waspada':'constant',[75]
+MF4='awas':'constant',[100]
+
+[Rules]
+4 4 2 1, 1 (1) : 1
+4 4 2 2, 1 (1) : 1
+4 4 2 3, 1 (1) : 1
+4 4 2 4, 2 (1) : 1
+1 4 2 0, 2 (1) : 1
+2 4 2 0, 3 (1) : 1
+3 4 2 0, 4 (1) : 1
+4 1 2 0, 2 (1) : 1
+4 2 2 0, 3 (1) : 1
+4 3 2 0, 4 (1) : 1
+0 0 1 0, 4 (1) : 1
+0 0 4 0, 4 (1) : 1
+1 4 3 0, 3 (1) : 1
+2 4 3 0, 3 (1) : 1
+3 4 3 0, 4 (1) : 1
+4 1 3 0, 3 (1) : 1
+4 2 3 0, 3 (1) : 1
+4 3 3 0, 4 (1) : 1
+1 3 1 0, 4 (1) : 1
+1 3 2 0, 4 (1) : 1
+3 1 2 0, 4 (1) : 1
+2 2 2 0, 3 (1) : 1
+1 1 2 0, 2 (1) : 1
+3 3 2 0, 4 (1) : 1
+1 2 2 0, 3 (1) : 1
+2 1 2 0, 3 (1) : 1
+2 3 2 0, 4 (1) : 1
+3 2 2 0, 4 (1) : 1
